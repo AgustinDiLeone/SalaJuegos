@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SalaJuegos-DiLeone": {
+    "salajuegos-dileone": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "SalaJuegos-DiLeone:build:production"
+              "buildTarget": "salajuegos-dileone:build:production"
             },
             "development": {
-              "buildTarget": "SalaJuegos-DiLeone:build:development"
+              "buildTarget": "salajuegos-dileone:build:development"
             }
           },
           "defaultConfiguration": "development"

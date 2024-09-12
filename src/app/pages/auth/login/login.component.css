@@ -1,0 +1,36 @@
+/* Estilos del contenedor */
+.usuarios {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: transparent; /* Fondo transparente */
+    margin-top: 30px; /* Separación con el div superior */
+  }
+  
+  /* Estilos de los botones */
+  .styled-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .styled-button:hover {
+    background-color: #45a049;
+  }
+  
+  .styled-button:active {
+    background-color: #3e8e41;
+  }
+  
+  .styled-button:focus {
+    outline: none;
+  }
+  

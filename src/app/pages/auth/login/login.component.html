@@ -6,7 +6,7 @@
             class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form>
+          <form (ngSubmit)="ingresar()">
             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
               <h1>Log in</h1>
             </div>
@@ -34,6 +34,18 @@
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
               <p class="small fw-bold mt-2 pt-1 mb-0">No tienes cuenta? <button routerLink="/auth/registro"
                   class="link-danger" style = border:none>Registrate</button></p>
+            </div>
+
+            <div class="usuarios">
+              <button class="styled-button" (click)="ingresarAdmin()">
+                Admin
+              </button>
+              <button class="styled-button" (click)="ingresarProp()">
+                Propietario
+              </button>
+              <button class="styled-button" (click)="ingresarUser()">
+                User
+              </button>
             </div>
  
           </form>
