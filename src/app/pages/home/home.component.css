@@ -1,0 +1,56 @@
+/* Estilos de la barra de herramientas */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del título */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Grupo de botones en la barra de herramientas */
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Botones de la barra de herramientas */
+.toolbar-button {
+  background-color: white;
+  color: #4caf50;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toolbar-button:hover {
+  background-color: #45a049;
+  color: white;
+  border-color: #45a049;
+}
+
+/* Estilo del contenido principal */
+.home-content {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.home-content h1 {
+  font-size: 32px;
+  color: #333;
+}
+
+.home-content p {
+  font-size: 18px;
+  color: #666;
+}

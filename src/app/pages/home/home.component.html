@@ -1,6 +1,15 @@
-<h1> HOME </h1>
+<div class="toolbar">
+  <div class="title">Sala de Juegos</div>
+  <div class="button-group">
+    <button class="toolbar-button" routerLink="/auth">Log In</button>
+    <button class="toolbar-button" routerLink="/auth/registro">Registro</button>
+    <button class="toolbar-button" routerLink="/quien-soy">Quién Soy</button>
+  </div>
+</div>
 
-<button routerLink="/auth">AUTH</button>
-<button routerLink="/quien-soy">Quien soy?</button>
+<div class="home-content">
+  <h1>Bienvenido a la Sala de Juegos</h1>
+  <p>Disfruta de nuestros juegos interactivos y estadísticas.</p>
+</div>
 
 <router-outlet></router-outlet>
