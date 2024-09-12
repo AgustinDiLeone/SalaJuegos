@@ -20,14 +20,27 @@ export class AppComponent {
   private auth = inject(Auth);
   logueado = false;
   authSubscription?: Unsubscribe;
+  emailPrefix: string = '';
+  titulo: string = 'Sala de juego';
 
   ngOnInit() {
     this.authSubscription = this.auth.onAuthStateChanged((auth) => {
       if (auth?.email) {
         this.logueado = true;
+        this.getEmailPrefix();
+        this.titulo += ' - ' + this.emailPrefix;
         this.router.navigateByUrl('');
       }
     });
+  }
+  getEmailPrefix() {
+    const user = this.auth.currentUser;
+
+    if (user && user.email) {
+      // Obtener el email y dividirlo en dos partes usando el símbolo '@'
+      const emailParts = user.email.split('@');
+      this.emailPrefix = emailParts[0]; // Parte antes del '@'
+    }
   }
   ngOnDestroy() {
     if (this.authSubscription !== undefined) {
@@ -50,6 +63,7 @@ export class AppComponent {
   cerrarSesion() {
     this.auth.signOut();
     this.logueado = false;
+    this.titulo = 'Sala de juego';
   }
   mostrarAlerta() {
     Swal.fire({

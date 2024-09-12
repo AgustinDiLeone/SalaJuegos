@@ -1,5 +1,30 @@
-<div class="home-message">
-  <h1>Bienvenido a la Sala de Juegos</h1>
-  <p>Esta es la página de inicio.</p>
+<div class="home-container">
+  <h1>Bienvenido a Sala de Juegos</h1>
+
+  <div class="button-group">
+    <a routerLink="/ahorcado" class="button-card">
+      <img src="assets/ahorcado.png" alt="Ahorcado" class="button-image" />
+      <div class="button-text">Ahorcado</div>
+    </a>
+    <a routerLink="/mayor-menor" class="button-card">
+      <img
+        src="assets/mayorMenor.png"
+        alt="Mayor o Menor"
+        class="button-image"
+      />
+      <div class="button-text">Mayor o Menor</div>
+    </a>
+    <a routerLink="/preguntados" class="button-card">
+      <img
+        src="assets/preguntados.png"
+        alt="Preguntados"
+        class="button-image"
+      />
+      <div class="button-text">Preguntados</div>
+    </a>
+    <a routerLink="/juego-adicional" class="button-card">
+      <img src="assets/propio.png" alt="Juego Adicional" class="button-image" />
+      <div class="button-text">Juego Adicional</div>
+    </a>
+  </div>
 </div>
-<router-outlet></router-outlet>

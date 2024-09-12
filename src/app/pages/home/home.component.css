@@ -1,7 +1,46 @@
-/* home.component.css */
-.home-message {
+.home-container {
   text-align: center;
   padding: 20px;
-  font-size: 1.5em;
-  color: #333;
+  background-color: #f3f3f3;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los botones se ajusten si no caben en una línea */
+  gap: 20px; /* Espacio entre los botones */
+  justify-content: center; /* Centra los botones en el contenedor */
+  font-weight: bold;
+}
+
+.button-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none; /* Quita el subrayado del enlace */
+  background-color: #4caf50;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 150px; /* Ancho del botón */
+  height: 150px; /* Altura del botón */
+  overflow: hidden; /* Asegura que las imágenes no se salgan del botón */
+}
+
+.button-image {
+  width: 100%; /* Hace que la imagen ocupe todo el ancho del botón */
+  height: 75%; /* Ajusta la altura de la imagen dentro del botón */
+  object-fit: cover; /* Asegura que la imagen cubra el área del botón sin deformarse */
+  border-bottom: 2px solid #4caf50; /* Borde verde debajo de la imagen */
+}
+
+.button-text {
+  font-size: 16px;
+  color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
 }

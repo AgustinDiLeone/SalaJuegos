@@ -65,12 +65,24 @@ export class RegistroComponent {
           });
         })
         .catch((error) => {
-          Swal.fire({
-            title: 'Error',
-            text: 'Correo y/o contrseña invalida',
-            icon: 'error', // Icono de éxito
-            confirmButtonText: 'Aceptar',
-          });
+          switch (error.code) {
+            case 'auth/email-already-in-use':
+              Swal.fire({
+                title: 'Error',
+                text: 'Este usuario ya cuenta con una cuenta, por favor loguearse',
+                icon: 'error', // Icono de éxito
+                confirmButtonText: 'Aceptar',
+              });
+              break;
+            default:
+              Swal.fire({
+                title: 'Error',
+                text: 'Correo y/o contrseña invalida',
+                icon: 'error', // Icono de éxito
+                confirmButtonText: 'Aceptar',
+              });
+              break;
+          }
         });
     } else {
       console.error('Formulario inválido');
