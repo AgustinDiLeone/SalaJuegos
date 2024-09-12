@@ -1,1 +1,16 @@
+<div class="toolbar">
+  <div class="title">Sala de Juegos</div>
+  <div class="button-group">
+    <button class="toolbar-button" (click)="irAlHome()">HOME</button>
+    <button class="toolbar-button" (click)="irAlQuienSoy()">Quién Soy</button>
+    @if(!logueado){
+    <button class="toolbar-button" (click)="irAlLogin()">Log In</button>
+    <button class="toolbar-button" (click)="irAlRegistro()">Registro</button>
+    }@else{
+    <button class="toolbar-button" (click)="cerrarSesion()">
+      Cerrar Sesion
+    </button>
+    }
+  </div>
+</div>
 <router-outlet></router-outlet>

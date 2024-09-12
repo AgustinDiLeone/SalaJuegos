@@ -1,36 +1,88 @@
-/* Estilos del contenedor */
-.usuarios {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: transparent; /* Fondo transparente */
-    margin-top: 30px; /* Separación con el div superior */
-  }
-  
-  /* Estilos de los botones */
-  .styled-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .styled-button:hover {
-    background-color: #45a049;
-  }
-  
-  .styled-button:active {
-    background-color: #3e8e41;
-  }
-  
-  .styled-button:focus {
-    outline: none;
-  }
-  
+body {
+  font-family: sans-serif;
+  background-color: #4caf50;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.main {
+  background-color: #4caf50;
+  margin-top: 5%;
+  margin-left: 40%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+}
+
+h1 {
+  color: #ffffff;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #ffffff;
+}
+.validators {
+  color: #ff0000;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  border: 1px solid #000000;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  color: #4caf50;
+  background-color: #ffffff;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button-group button {
+  width: 30%;
+  background-color: #6c757d;
+}
+
+.password-container {
+  position: relative;
+}
+
+.toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #4caf50;
+  cursor: pointer;
+}
+.registro {
+  margin-top: 2%;
+}

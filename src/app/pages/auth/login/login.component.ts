@@ -1,37 +1,104 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  Auth,
+  Unsubscribe,
+  signInWithEmailAndPassword,
+} from '@angular/fire/auth';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
+  showPassword = false;
+  form!: FormGroup;
+  authSubscription?: Unsubscribe;
 
-  form = new FormGroup({
-    email: new FormControl('',[Validators.required, Validators.email]),
-    password: new FormControl('',[Validators.required, Validators.minLength(6)])
-  })
-  ingresar(){}
-  ingresarAdmin(){
-    const correo = 'admin@gmail.com';
-    this.form.controls.email.setValue(correo);
-    const password = 'Admin1234';
-    this.form.controls.password.setValue(password);
+  private auth = inject(Auth);
+  private router = inject(Router);
+  private fb = inject(FormBuilder);
+
+  ngOnInit() {
+    // Inicializar el formulario
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+
+    // Suscripción al estado de autenticación
+    this.authSubscription = this.auth.onAuthStateChanged((authUser) => {
+      if (authUser?.email) {
+        this.router.navigateByUrl('');
+      }
+    });
   }
-  ingresarProp(){
-    const correo = 'agustindileone@gmail.com';
-    this.form.controls.email.setValue(correo);
-    const password = 'Agus1234';
-    this.form.controls.password.setValue(password);
+
+  login() {
+    if (this.form.valid) {
+      const { email, password } = this.form.value;
+      signInWithEmailAndPassword(this.auth, email, password)
+        .then((userCredential) => {
+          console.log('Usuario autenticado:', userCredential.user);
+        })
+        .catch((error) => {
+          Swal.fire({
+            title: 'Error',
+            text: 'Correo y/o contrseña invalida',
+            icon: 'error', // Icono de éxito
+            confirmButtonText: 'Aceptar',
+          });
+        });
+    } else {
+      console.error('Formulario inválido');
+    }
   }
-  ingresarUser(){
-    const correo = 'user@gmail.com';
-    this.form.controls.email.setValue(correo);
-    const password = 'User1234';
-    this.form.controls.password.setValue(password);
+
+  ngOnDestroy() {
+    if (this.authSubscription !== undefined) {
+      this.authSubscription();
+    }
+  }
+
+  // Métodos para usuarios predefinidos
+  ingresarAdmin() {
+    this.form.patchValue({
+      email: 'admin@gmail.com',
+      password: 'Admin1234',
+    });
+  }
+
+  ingresarProp() {
+    this.form.patchValue({
+      email: 'agustindileone@gmail.com',
+      password: 'Agus1234',
+    });
+  }
+
+  ingresarUser() {
+    this.form.patchValue({
+      email: 'user@gmail.com',
+      password: 'User1234',
+    });
+  }
+
+  // Alternar visibilidad de contraseña
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+  irAlRegistro() {
+    this.router.navigateByUrl('auth/registro');
   }
 }
