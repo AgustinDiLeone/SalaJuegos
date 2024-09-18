@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+.footer {
+  background-color: #4caf50; /* Color de fondo verde como antes */
+  color: #fff; /* Color del texto blanco */
+  text-align: center; /* Centrar el texto */
+  padding: 5px 0; /* Espaciado interno más reducido */
+  position: fixed; /* Fija el pie de página en la parte inferior */
+  bottom: 0; /* Alinea el pie de página al fondo */
+  width: 100%; /* Ancho completo del pie de página */
+  font-size: 14px; /* Tamaño de fuente reducido */
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2); /* Sombra sutil para efecto de profundidad */
+  border-top: 1px solid #388e3c; /* Línea sutil en la parte superior */
+}
