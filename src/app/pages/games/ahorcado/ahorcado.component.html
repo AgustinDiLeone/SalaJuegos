@@ -1,0 +1,35 @@
+<div class="container">
+  <!-- Contenedor del título -->
+  <div class="title-container">
+    <h1>Ahorcado</h1>
+  </div>
+  <!-- Contenedor del palabra -->
+  <div class="word-container">
+    <span *ngFor="let letter of displayedWord" class="letter">{{
+      letter
+    }}</span>
+  </div>
+  <!-- Contenedor del teclado -->
+  <div class="keyboard">
+    <button
+      *ngFor="let letter of alphabet"
+      [class.disabled]="disabledLetters.includes(letter)"
+      (click)="guessLetter(letter)"
+      class="key"
+    >
+      {{ letter }}
+    </button>
+  </div>
+  <!-- Contenedor del status -->
+  <div class="status">
+    <p *ngIf="isGameOver && !hasWon">
+      ¡Juego Terminado! La palabra era: {{ wordToGuess }}
+    </p>
+    <p *ngIf="hasWon">¡Felicidades, ganaste!</p>
+    <p>Intentos restantes: {{ remainingAttempts }}</p>
+  </div>
+  <!-- Botón de jugar de nuevo -->
+  <button *ngIf="isGameOver" class="reset-button" (click)="startNewGame()">
+    Jugar de Nuevo
+  </button>
+</div>

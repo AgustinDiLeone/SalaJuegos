@@ -1,0 +1,153 @@
+.container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+.title-container {
+  background-color: #4caf50; /* Fondo del título */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  display: inline-block; /* Ajustar el ancho del contenedor al contenido */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.title-container h1 {
+  color: white; /* Color del texto */
+  margin: 0; /* Quitar margen del título */
+}
+
+.word-container {
+  margin: 20px 0;
+}
+
+.letter {
+  font-size: 2rem;
+  color: #4caf50;
+  margin: 0 5px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.letter.correct {
+  color: #4caf50; /* Color de la letra correcta */
+}
+
+.letter.correct::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: #4caf50; /* Línea verde debajo de la letra */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.letter.incorrect {
+  color: red;
+  text-decoration: line-through; /* Opcional, para indicar letras incorrectas */
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.key {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.key:hover {
+  background-color: #45a049;
+  transform: scale(1.1);
+}
+
+.key.disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+}
+
+.status {
+  margin-top: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.reset-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.reset-button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+}
