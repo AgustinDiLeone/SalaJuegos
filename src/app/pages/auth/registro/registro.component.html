@@ -2,6 +2,28 @@
   <h1>Registro</h1>
 
   <form [formGroup]="form" (ngSubmit)="registro()">
+    <!-- Campo de nombre -->
+    <div class="input-icon">
+      <label for="name">Nombre</label>
+      <i class="fas fa-user"></i>
+      <input
+        type="text"
+        formControlName="name"
+        id="name"
+        placeholder="Ingrese su nombre"
+      />
+    </div>
+    <div
+      class="validators"
+      *ngIf="form.get('name')?.errors && form.get('name')?.touched"
+    >
+      <div *ngIf="form.get('name')?.errors?.['required']">
+        Ingrese un nombre
+      </div>
+      <div *ngIf="form.get('name')?.errors?.['minlength']">
+        Ingrese al menos 4 caracteres
+      </div>
+    </div>
     <!-- Campo de correo -->
     <label for="email">Correo</label>
     <input
@@ -41,7 +63,6 @@
         Ingrese al menos 6 caracteres
       </div>
     </div>
-
     <!-- Botón de ingreso -->
     <button type="submit" [disabled]="form.invalid">Registrar</button>
   </form>

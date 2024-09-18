@@ -1,46 +1,93 @@
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .home-container {
   text-align: center;
   padding: 20px;
   background-color: #f3f3f3;
   min-height: 100vh;
+  animation: fadeInScale 1s ease-out;
 }
 
 h1 {
   color: #4caf50;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  animation: bounceIn 1s ease-out;
 }
 
 .button-group {
   display: flex;
-  flex-wrap: wrap; /* Permite que los botones se ajusten si no caben en una línea */
-  gap: 20px; /* Espacio entre los botones */
-  justify-content: center; /* Centra los botones en el contenedor */
-  font-weight: bold;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .button-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none; /* Quita el subrayado del enlace */
+  text-decoration: none;
   background-color: #4caf50;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 150px; /* Ancho del botón */
-  height: 150px; /* Altura del botón */
-  overflow: hidden; /* Asegura que las imágenes no se salgan del botón */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 180px;
+  height: 180px;
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: bounceIn 1s ease-out;
+}
+
+.button-card:hover {
+  transform: scale(1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .button-image {
-  width: 100%; /* Hace que la imagen ocupe todo el ancho del botón */
-  height: 75%; /* Ajusta la altura de la imagen dentro del botón */
-  object-fit: cover; /* Asegura que la imagen cubra el área del botón sin deformarse */
-  border-bottom: 2px solid #4caf50; /* Borde verde debajo de la imagen */
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-bottom: 2px solid #4caf50;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.button-card:hover .button-image {
+  opacity: 0.8;
+  transform: scale(1.1);
 }
 
 .button-text {
-  font-size: 16px;
+  font-size: 18px;
   color: #f0f0f0;
   padding: 10px;
   text-align: center;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.button-card:hover .button-text {
+  color: #ffffff;
 }

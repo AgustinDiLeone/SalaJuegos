@@ -94,10 +94,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Alternar visibilidad de contraseña
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
-  }
   irAlRegistro() {
     this.router.navigateByUrl('auth/registro');
   }

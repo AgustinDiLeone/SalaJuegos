@@ -14,6 +14,7 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-registro',
   standalone: true,
@@ -28,7 +29,6 @@ import Swal from 'sweetalert2';
   styleUrl: './registro.component.css',
 })
 export class RegistroComponent {
-  showPassword = false;
   form!: FormGroup;
   authSubscription?: Unsubscribe;
 
@@ -39,6 +39,7 @@ export class RegistroComponent {
   ngOnInit() {
     // Inicializar el formulario
     this.form = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });

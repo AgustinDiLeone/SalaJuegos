@@ -7,6 +7,7 @@ import {
 } from 'firebase/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { getFirestore, setDoc, doc } from '@angular/fire/firestore';
+import { Usuario } from '../classes/usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -17,23 +18,25 @@ export class FirebaseService {
   auth = inject(AngularFireAuth);
   firestore = inject(AngularFirestore);
   // =========================  Autenticacion ===================
-  SignUp(user: User) {
-    return createUserWithEmailAndPassword(getAuth(), user.email, user.password);
+  /*
+  SignUp(user: Usuario) {
+    return createUserWithEmailAndPassword(getAuth(), user.mail, user.password);
   }
+  /*
   // =================== Ingreso===========================
-
-  SignIn(user: User) {
-    return signInWithEmailAndPassword(getAuth(), user.email, user.password);
+  /*
+  SignIn(user: Usuario) {
+    return signInWithEmailAndPassword(getAuth(), user.mail, user.nombre);
   }
-
+  */
   // =================== Cerrar Sesion ===========================
-
+  /*
   SignOut() {
     getAuth().signOut();
     localStorage.removeItem('user');
     routerLink('/auth');
   }
-
+  */
   //============= BASE DE DATOS =====================================
   setDocument(path: string, data: any) {
     return setDoc(doc(getFirestore(), path), data);
