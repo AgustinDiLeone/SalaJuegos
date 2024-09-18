@@ -1,14 +1,25 @@
-.container {
-  text-align: center;
+/* Contenedor principal usando flexbox */
+.main-container {
+  display: flex;
+  justify-content: space-between; /* Espacio igual entre contenedores */
+  align-items: flex-start; /* Alinea los elementos al principio verticalmente */
+  gap: 20px; /* Espacio entre los contenedores */
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
+  max-width: 1000px; /* Ajusta el ancho máximo según sea necesario */
   margin: 0 auto;
   margin-top: 5%;
 }
 
+/* Contenedor del juego */
+.game-container {
+  flex: 1; /* Toma el espacio restante disponible */
+  text-align: center;
+}
+
+/* Contenedor del título */
 .title-container {
   background-color: #4caf50; /* Fondo del título */
   border-radius: 10px; /* Bordes redondeados */
@@ -23,6 +34,7 @@
   margin: 0; /* Quitar margen del título */
 }
 
+/* Contenedor de la palabra */
 .word-container {
   margin: 20px 0;
 }
@@ -61,6 +73,7 @@
   text-decoration: line-through; /* Opcional, para indicar letras incorrectas */
 }
 
+/* Contenedor del teclado */
 .keyboard {
   display: flex;
   flex-wrap: wrap;
@@ -92,10 +105,49 @@
   cursor: not-allowed;
 }
 
+/* Contenedor del estado */
 .status {
   margin-top: 20px;
 }
 
+/* Botón de jugar de nuevo */
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.reset-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.reset-button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+}
+
+/* Contenedor de la imagen del ahorcado */
+.hangman-container {
+  flex: 0 0 200px; /* Ancho fijo para el contenedor de la imagen */
+  text-align: center;
+}
+
+.hangman-container img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #4caf50; /* Opcional: borde alrededor de la imagen */
+  border-radius: 10px;
+}
+
+/* Animaciones */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -127,27 +179,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.reset-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.reset-button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-}
-
-.reset-button:disabled {
-  background-color: #b0b0b0;
-  cursor: not-allowed;
 }

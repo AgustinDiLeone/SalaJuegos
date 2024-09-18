@@ -23,6 +23,16 @@ export class AhorcadoComponent {
   disabledLetters: string[] = [];
   isGameOver: boolean = false;
   hasWon: boolean = false;
+  hangmanImages: string[] = [
+    'assets/hangman/hangman0.png',
+    'assets/hangman/hangman1.png',
+    'assets/hangman/hangman2.png',
+    'assets/hangman/hangman3.png',
+    'assets/hangman/hangman4.png',
+    'assets/hangman/hangman5.png',
+    'assets/hangman/hangman6.png',
+  ];
+  hangmanImage: string = this.hangmanImages[0];
 
   ngOnInit() {
     this.startNewGame();
@@ -36,6 +46,7 @@ export class AhorcadoComponent {
     this.disabledLetters = [];
     this.isGameOver = false;
     this.hasWon = false;
+    this.hangmanImage = this.hangmanImages[0];
   }
 
   guessLetter(letter: string) {
@@ -56,6 +67,7 @@ export class AhorcadoComponent {
       }
     } else {
       this.remainingAttempts--;
+      this.hangmanImage = this.hangmanImages[6 - this.remainingAttempts];
       if (this.remainingAttempts === 0) {
         this.isGameOver = true;
       }
