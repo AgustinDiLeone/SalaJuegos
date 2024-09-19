@@ -1,0 +1,44 @@
+<div class="contenedor-juego">
+  <div class="titulo">
+    <h1>Mayor o Menor</h1>
+  </div>
+
+  <div class="contenedor-principal">
+    <div class="contenedor-cartas">
+      <div class="carta">
+        <img
+          src="{{ imagenCarta }}{{ cartaActual.palo }}{{
+            cartaActual.valor
+          }}.png"
+        />
+      </div>
+    </div>
+
+    <div class="contenedor-botones">
+      <button
+        class="btn-mayor"
+        (click)="adivinar(true)"
+        [disabled]="juegoTerminado"
+      >
+        Mayor
+      </button>
+      <button
+        class="btn-menor"
+        (click)="adivinar(false)"
+        [disabled]="juegoTerminado"
+      >
+        Menor
+      </button>
+    </div>
+  </div>
+
+  <div class="resultado">
+    <div class="contador-aciertos">
+      Aciertos: <span>{{ puntuacion }}</span>
+    </div>
+    <div *ngIf="juegoTerminado" class="mensaje">{{ mensaje }}</div>
+    <div *ngIf="juegoTerminado" class="contenedor-reiniciar">
+      <button (click)="reiniciarJuego()">Reiniciar juego</button>
+    </div>
+  </div>
+</div>

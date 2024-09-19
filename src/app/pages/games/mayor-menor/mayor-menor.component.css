@@ -1,0 +1,181 @@
+/* Estilo general del contenedor del juego */
+.contenedor-juego {
+  display: flex;
+  justify-content: space-between; /* Espacio igual entre contenedores */
+  gap: 20px; /* Espacio entre los contenedores */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 1000px; /* Ajusta el ancho máximo según sea necesario */
+  margin: 0 auto;
+  margin-top: 5%;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Arial", sans-serif;
+  box-sizing: border-box;
+}
+
+/* Estilo del título */
+.titulo {
+  background-color: #4caf50; /* Fondo del título */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  display: inline-block; /* Ajustar el ancho del contenedor al contenido */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  animation: fadeInDown 1s ease-in-out;
+}
+.titulo h1 {
+  color: white; /* Color del texto */
+  margin: 0; /* Quitar margen del título */
+}
+
+/* Contenedor principal para los botones y cartas */
+.contenedor-principal {
+  display: flex;
+  gap: 20px;
+}
+
+/* Estilo de la carta */
+.contenedor-cartas {
+  display: flex;
+  align-items: center;
+}
+
+.carta {
+  background-color: #fff;
+  padding: 20px; /* Ajusta el padding para adaptarse a la imagen */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 150px; /* Ajusta el ancho del div según el tamaño de la imagen */
+  height: 200px; /* Ajusta la altura del div según el tamaño de la imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carta img {
+  max-width: 100%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 100%; /* Ajusta la imagen al tamaño del contenedor */
+  border-radius: 5px;
+}
+
+/* Estilo de los botones */
+.contenedor-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contenedor-botones button {
+  width: 150px;
+  height: 60px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-mayor {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-menor {
+  background-color: #dc3545;
+  color: white;
+}
+
+.contenedor-botones button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.contenedor-botones button:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para botones deshabilitados */
+.contenedor-botones button:disabled {
+  background-color: #d3d3d3; /* Color de fondo gris para deshabilitado */
+  color: white; /* Color del texto gris claro */
+  cursor: not-allowed; /* Cursor de no permitido */
+  box-shadow: none; /* Sin sombra */
+  pointer-events: none; /* Sin eventos de puntero */
+  opacity: 0.6; /* Opacidad para mostrar que está deshabilitado */
+}
+
+/* Estilo del contenedor de resultado */
+.resultado {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contador-aciertos {
+  font-size: 1.5rem;
+  color: #28a745; /* Color verde para los aciertos */
+  margin-bottom: 10px;
+}
+
+.mensaje-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column; /* Coloca el mensaje y el botón en una columna */
+}
+
+.mensaje {
+  color: red; /* Color rojo para el mensaje */
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  animation: parpadeo 1s infinite;
+}
+
+.contenedor-reiniciar {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px; /* Espacio entre el mensaje y el botón */
+  align-items: center;
+}
+
+.contenedor-reiniciar button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #28a745; /* Botón en verde */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contenedor-reiniciar button:hover {
+  background-color: #218838; /* Color verde más oscuro en hover */
+}
+
+/* Animaciones */
+@keyframes aparecerTitulo {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes parpadeo {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
