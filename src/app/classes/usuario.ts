@@ -1,9 +1,11 @@
 export class Usuario {
+  uid: string;
   nombre: string;
-  mail: string;
+  email: string;
 
-  constructor(nombre: string, mail: string) {
+  constructor(uid: string, nombre: string, email: string) {
+    this.uid = uid;
     this.nombre = nombre;
-    this.mail = mail;
+    this.email = email;
   }
 }

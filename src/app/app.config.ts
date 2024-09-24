@@ -6,23 +6,19 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { environment } from '../environments/environment.development';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideFirebaseApp(() =>
-      initializeApp({
-        projectId: 'dileonesalajuegos',
-        appId: '1:567745534532:web:51482d2ca99a4ca0463a11',
-        storageBucket: 'dileonesalajuegos.appspot.com',
-        apiKey: 'AIzaSyDur3wO0qmTHJ1evp77G52AFu4YHf2t08s',
-        authDomain: 'dileonesalajuegos.firebaseapp.com',
-        messagingSenderId: '567745534532',
-      })
-    ),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
+    provideHttpClient(withFetch()),
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig },
   ],
 };

@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ingresarProp() {
     this.form.patchValue({
       email: 'agustindileone@gmail.com',
-      password: 'Agus1234',
+      password: 'Prop1234',
     });
   }
 

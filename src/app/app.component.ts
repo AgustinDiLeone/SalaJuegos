@@ -1,7 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject, Injector } from '@angular/core';
 import { Auth, Unsubscribe } from '@angular/fire/auth';
 import { Router, RouterOutlet } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DatabaseService } from './services/database.service';
+import { Usuario } from './classes/usuario';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,37 +14,54 @@ import Swal from 'sweetalert2';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'SalaJuegos-DiLeone';
-
   constructor() {}
 
-  //  constructor(private router: Router, private firebase: Firebase) {}
   private router = inject(Router);
+  private db = inject(DatabaseService);
   private auth = inject(Auth);
+  private cdr = inject(ChangeDetectorRef);
   logueado = false;
   authSubscription?: Unsubscribe;
   emailPrefix: string = '';
   titulo: string = 'Sala de juego';
 
-  ngOnInit() {
-    this.authSubscription = this.auth.onAuthStateChanged((auth) => {
+  async ngOnInit() {
+    this.authSubscription = this.auth.onAuthStateChanged(async (auth) => {
       if (auth?.email) {
         this.logueado = true;
-        this.getEmailPrefix();
-        this.titulo += ' - ' + this.emailPrefix;
+        // Intentamos agregar el nombre al título
+        await this.agregarNombreAlTitulo(auth.uid, auth.email);
+
         this.router.navigateByUrl('');
       }
     });
   }
-  getEmailPrefix() {
-    const user = this.auth.currentUser;
 
-    if (user && user.email) {
-      // Obtener el email y dividirlo en dos partes usando el símbolo '@'
-      const emailParts = user.email.split('@');
-      this.emailPrefix = emailParts[0]; // Parte antes del '@'
+  private async agregarNombreAlTitulo(
+    uid: string,
+    email: string
+  ): Promise<void> {
+    try {
+      const nombre = await this.db.obtenerNombrePorUid(uid);
+      console.log(nombre);
+      if (nombre) {
+        this.titulo += ' - ' + nombre;
+      } else {
+        this.agregarEmailAlTitulo(email);
+      }
+      this.cdr.detectChanges(); // Forzar la detección de cambios
+    } catch (error) {
+      console.error('Error al obtener el nombre del usuario:', error);
+      this.agregarEmailAlTitulo(email);
+      this.cdr.detectChanges(); // Forzar la detección de cambios
     }
   }
+
+  private agregarEmailAlTitulo(email: string): void {
+    const emailPrefix = email.split('@')[0];
+    this.titulo += ' - ' + emailPrefix;
+  }
+
   ngOnDestroy() {
     if (this.authSubscription !== undefined) {
       this.authSubscription();
@@ -50,6 +70,9 @@ export class AppComponent {
 
   irAlHome() {
     this.router.navigateByUrl('');
+  }
+  irAlChat() {
+    this.router.navigateByUrl('chat');
   }
   irAlLogin() {
     this.router.navigateByUrl('auth');
@@ -64,13 +87,6 @@ export class AppComponent {
     this.auth.signOut();
     this.logueado = false;
     this.titulo = 'Sala de juego';
-  }
-  mostrarAlerta() {
-    Swal.fire({
-      title: '¡Hola!',
-      text: 'Esta es una alerta de ejemplo en Angular con SweetAlert2 al inicializar el componente',
-      icon: 'success', // Icono de éxito
-      confirmButtonText: 'Aceptar',
-    });
+    this.router.navigateByUrl('');
   }
 }
