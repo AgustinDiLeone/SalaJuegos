@@ -118,7 +118,10 @@ export class AhorcadoComponent {
       if (this.remainingAttempts === 0) {
         this.isGameOver = true;
         clearInterval(this.intervalId);
-        this.endGame(false, '¡Perdiste! Has alcanzado el límite de fallos.');
+        this.endGame(
+          false,
+          `Has alcanzado el límite de fallos! Tu puntuación es: ${this.score}`
+        );
       }
     }
   }
