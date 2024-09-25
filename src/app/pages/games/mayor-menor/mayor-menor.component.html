@@ -3,13 +3,31 @@
     <h1>Mayor o Menor</h1>
   </div>
 
+  <div class="vidas">
+    <img
+      [ngStyle]="{ opacity: vidas >= 1 ? 1 : 0.2 }"
+      src="assets/mayorMenor/corazon.png"
+      class="corazon"
+    />
+    <img
+      [ngStyle]="{ opacity: vidas >= 2 ? 1 : 0.2 }"
+      src="assets/mayorMenor/corazon.png"
+      class="corazon"
+    />
+    <img
+      [ngStyle]="{ opacity: vidas >= 3 ? 1 : 0.2 }"
+      src="assets/mayorMenor/corazon.png"
+      class="corazon"
+    />
+  </div>
+
   <div class="contenedor-principal">
     <div class="contenedor-cartas">
       <div class="carta">
         <img
-          src="{{ imagenCarta }}{{ cartaActual.palo }}{{
-            cartaActual.valor
-          }}.png"
+          [src]="imagenCarta + cartaActual.palo + cartaActual.valor + '.png'"
+          alt="Carta actual"
+          class="imagen-carta"
         />
       </div>
     </div>
@@ -32,13 +50,7 @@
     </div>
   </div>
 
-  <div class="resultado">
-    <div class="contador-aciertos">
-      Aciertos: <span>{{ puntuacion }}</span>
-    </div>
-    <div *ngIf="juegoTerminado" class="mensaje">{{ mensaje }}</div>
-    <div *ngIf="juegoTerminado" class="contenedor-reiniciar">
-      <button (click)="reiniciarJuego()">Reiniciar juego</button>
-    </div>
+  <div class="contador-puntos">
+    Puntuacion: <span>{{ puntuacion }}</span>
   </div>
 </div>

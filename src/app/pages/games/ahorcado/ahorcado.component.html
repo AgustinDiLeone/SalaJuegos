@@ -5,6 +5,10 @@
     <div class="title-container">
       <h1>Ahorcado</h1>
     </div>
+    <!-- Temporizador -->
+    <div class="timer">
+      <h1>00:{{ timeRemaining < 10 ? "0" + timeRemaining : timeRemaining }}</h1>
+    </div>
 
     <!-- Contenedor de la palabra -->
     <div class="word-container">
@@ -27,17 +31,8 @@
 
     <!-- Contenedor del status -->
     <div class="status">
-      <p *ngIf="isGameOver && !hasWon">
-        ¡Juego Terminado! La palabra era: {{ wordToGuess }}
-      </p>
-      <p *ngIf="hasWon">¡Felicidades, ganaste!</p>
       <p>Intentos restantes: {{ remainingAttempts }}</p>
     </div>
-
-    <!-- Botón de jugar de nuevo -->
-    <button *ngIf="isGameOver" class="reset-button" (click)="startNewGame()">
-      Jugar de Nuevo
-    </button>
   </div>
 
   <!-- Contenedor de la imagen del ahorcado -->

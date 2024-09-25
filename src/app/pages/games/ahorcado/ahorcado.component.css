@@ -34,6 +34,20 @@
   color: white; /* Color del texto */
   margin: 0; /* Quitar margen del título */
 }
+.timer {
+  background-color: #4caf50; /* Fondo del título */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  display: inline-block; /* Ajustar el ancho del contenedor al contenido */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  margin-left: 3%;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.timer h1 {
+  color: white; /* Color del texto */
+  margin: 0; /* Quitar margen del título */
+}
 
 /* Contenedor de la palabra */
 .word-container {

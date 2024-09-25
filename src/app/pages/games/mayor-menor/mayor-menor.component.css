@@ -22,19 +22,30 @@
   background-color: #4caf50; /* Fondo del título */
   border-radius: 10px; /* Bordes redondeados */
   padding: 10px 20px; /* Espaciado interno */
-  display: inline-block; /* Ajustar el ancho del contenedor al contenido */
-  margin-bottom: 20px; /* Espacio debajo del título */
   animation: fadeInDown 1s ease-in-out;
 }
+
 .titulo h1 {
   color: white; /* Color del texto */
-  margin: 0; /* Quitar margen del título */
+}
+
+/* Estilo de los corazones */
+.vidas {
+  background-color: #4caf50; /* Fondo del título */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.corazon {
+  width: 30px; /* Ajusta el tamaño de los corazones */
+  height: 30px; /* Ajusta el tamaño de los corazones */
 }
 
 /* Contenedor principal para los botones y cartas */
 .contenedor-principal {
   display: flex;
-  gap: 20px;
+  gap: 20px; /* Espacio entre elementos */
 }
 
 /* Estilo de la carta */
@@ -45,11 +56,11 @@
 
 .carta {
   background-color: #fff;
-  padding: 20px; /* Ajusta el padding para adaptarse a la imagen */
+  padding: 10px; /* Ajusta el padding para adaptarse a la imagen */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  width: 150px; /* Ajusta el ancho del div según el tamaño de la imagen */
+  width: 130px; /* Ajusta el ancho del div según el tamaño de la imagen */
   height: 200px; /* Ajusta la altura del div según el tamaño de la imagen */
   display: flex;
   justify-content: center;
@@ -59,14 +70,15 @@
 .carta img {
   max-width: 100%; /* Ajusta la imagen al tamaño del contenedor */
   max-height: 100%; /* Ajusta la imagen al tamaño del contenedor */
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 /* Estilo de los botones */
 .contenedor-botones {
+  margin-top: 8%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 20px; /* Espacio entre botones */
 }
 
 .contenedor-botones button {
@@ -81,12 +93,12 @@
 }
 
 .btn-mayor {
-  background-color: #28a745;
+  background-color: #28a745; /* Color verde */
   color: white;
 }
 
 .btn-menor {
-  background-color: #dc3545;
+  background-color: #dc3545; /* Color rojo */
   color: white;
 }
 
@@ -110,53 +122,10 @@
   opacity: 0.6; /* Opacidad para mostrar que está deshabilitado */
 }
 
-/* Estilo del contenedor de resultado */
-.resultado {
-  margin-top: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contador-aciertos {
+.contador-puntos {
   font-size: 1.5rem;
   color: #28a745; /* Color verde para los aciertos */
   margin-bottom: 10px;
-}
-
-.mensaje-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column; /* Coloca el mensaje y el botón en una columna */
-}
-
-.mensaje {
-  color: red; /* Color rojo para el mensaje */
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  animation: parpadeo 1s infinite;
-}
-
-.contenedor-reiniciar {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px; /* Espacio entre el mensaje y el botón */
-  align-items: center;
-}
-
-.contenedor-reiniciar button {
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  background-color: #28a745; /* Botón en verde */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.contenedor-reiniciar button:hover {
-  background-color: #218838; /* Color verde más oscuro en hover */
 }
 
 /* Animaciones */
@@ -170,13 +139,21 @@
     transform: translateY(0);
   }
 }
+.animar-carta {
+  animation: rotarEscalar 0.8s ease-in-out forwards; /* Añade forwards para mantener el estado final */
+}
 
-@keyframes parpadeo {
-  0%,
-  100% {
+@keyframes rotarEscalar {
+  0% {
+    transform: perspective(600px) rotateY(0deg) scale(1);
     opacity: 1;
   }
   50% {
-    opacity: 0;
+    transform: perspective(600px) rotateY(180deg) scale(1.1);
+    opacity: 0.5; /* Opcional: puedes cambiar la opacidad durante la rotación */
+  }
+  100% {
+    transform: perspective(600px) rotateY(0deg) scale(1);
+    opacity: 1;
   }
 }
