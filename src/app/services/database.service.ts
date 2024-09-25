@@ -15,7 +15,7 @@ import {
   query,
   orderBy,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Mensaje } from '../classes/mensajes';
 
 @Injectable({
@@ -117,9 +117,15 @@ export class DatabaseService {
     const mensajesCollection = collection(this.firestore, 'chat');
     const mensajesQuery = query(mensajesCollection, orderBy('fechaHora')); // Ordenar por fechaHora
 
-    return collectionData(mensajesQuery, { idField: 'id' }) as Observable<
-      Mensaje[]
-    >;
+    return collectionData(mensajesQuery, { idField: 'id' }).pipe(
+      map((mensajes: Mensaje[]) => {
+        // Parsear fechaHora a Date
+        return mensajes.map((msg: any) => ({
+          ...msg,
+          fechaHora: new Date(msg.fechaHora), // Asegúrate de que fechaHora sea un Date
+        }));
+      })
+    );
   }
 
   //#endregion

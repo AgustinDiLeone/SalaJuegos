@@ -19,7 +19,17 @@
         <strong class="usuario" *ngIf="msg.usuario.uid !== usuario.uid"
           >{{ msg.usuario.nombre }}:</strong
         >
-        <p class="texto">{{ msg.texto }}</p>
+        <p class="texto">
+          {{ msg.texto }}
+        </p>
+        <p class="hora">
+          {{
+            msg.fechaHora.toLocaleString([], {
+              hour: "2-digit",
+              minute: "2-digit"
+            })
+          }}
+        </p>
       </div>
     </div>
 

@@ -71,6 +71,7 @@
   color: white; /* Color del texto */
   text-align: right; /* Alineación a la derecha */
   margin-left: auto; /* Desplazar a la derecha */
+  padding: 2px;
 }
 
 .otros-mensaje {
@@ -78,8 +79,15 @@
   color: white; /* Color del texto */
   text-align: left; /* Alineación a la izquierda */
   margin-right: auto;
+  padding-inline-end: 2%;
 }
-
+.hora {
+  background-color: transparent; /* Color de fondo para otros mensajes */
+  color: rgb(200, 200, 200); /* Color del texto */
+  margin: 0;
+  padding: 0;
+  text-align: right; /* Alineación a la izquierda */
+}
 .usuario {
   font-weight: bold; /* Nombre del usuario en negrita */
   margin-right: 5px; /* Espacio entre el nombre y el texto */
