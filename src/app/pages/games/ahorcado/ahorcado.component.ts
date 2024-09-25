@@ -36,7 +36,7 @@ export class AhorcadoComponent {
     'assets/hangman/hangman6.png',
   ];
   hangmanImage: string = this.hangmanImages[0];
-  score: number = 0;
+  score: number = 20;
   timeRemaining: number = 45;
   intervalId: any;
 
@@ -49,6 +49,7 @@ export class AhorcadoComponent {
       title: 'Instrucciones de Puntuación',
       html: `
         <ul style="text-align: left;">
+          <li>Comenzaras con 20 puntos</li>
           <li>Dispones de 6 fallos y 45 segundos para resolver cada palabra.</li>
           <li>Cada letra acertada suma 1 punto.</li>
           <li>Resolver la palabra suma 50 puntos.</li>
@@ -73,7 +74,7 @@ export class AhorcadoComponent {
     this.isGameOver = false;
     this.hasWon = false;
     this.hangmanImage = this.hangmanImages[0];
-    this.score = 0;
+    this.score = 20;
     this.timeRemaining = 45;
     this.startTimer();
   }

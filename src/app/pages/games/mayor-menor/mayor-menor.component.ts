@@ -17,7 +17,7 @@ export class MayorMenorComponent implements OnInit {
   mazo: { palo: string; valor: number }[] = [];
   cartaActual!: { palo: string; valor: number };
   siguienteCarta!: { palo: string; valor: number };
-  puntuacion: number = 0;
+  puntuacion: number = 20;
   vidas: number = 3; // Inicializa las vidas
   aciertosConsecutivos: number = 0; // Contador de aciertos consecutivos
   mensaje: string = '';
@@ -33,6 +33,7 @@ export class MayorMenorComponent implements OnInit {
       title: 'Instrucciones de Puntuación',
       html: `
           <ul style="text-align: left;">
+            <li>Comenzaras con 20 puntos</li>
             <li>Dispones de 3 vidas para jugar.</li>
             <li>Cada acierto suma 5 puntos.</li>
             <li>Cada error resta 3 puntos.</li>
@@ -133,7 +134,7 @@ export class MayorMenorComponent implements OnInit {
   }
 
   reiniciarJuego(): void {
-    this.puntuacion = 0;
+    this.puntuacion = 20;
     this.vidas = 3; // Reinicia las vidas
     this.aciertosConsecutivos = 0; // Reinicia el contador de aciertos
     this.mensaje = '';
