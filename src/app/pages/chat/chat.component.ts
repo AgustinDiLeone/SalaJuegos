@@ -45,9 +45,11 @@ export class ChatComponent {
     }
   }
 
-  async cargarMensajes() {
-    // Suponiendo que tienes un método en tu DatabaseService para obtener mensajes
-    this.mensajes = await this.db.obtenerMensajes();
+  cargarMensajes() {
+    // Cargar mensajes en tiempo real
+    this.db.obtenerMensajes().subscribe((mensajes) => {
+      this.mensajes = mensajes; // Actualiza la lista de mensajes
+    });
   }
 
   async enviar() {

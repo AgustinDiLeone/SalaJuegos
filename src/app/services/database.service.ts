@@ -11,6 +11,9 @@ import {
   deleteDoc,
   getDoc,
   getDocs,
+  onSnapshot,
+  query,
+  orderBy,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Mensaje } from '../classes/mensajes';
@@ -110,27 +113,13 @@ export class DatabaseService {
     }
   }
   // Método para obtener mensajes
-  async obtenerMensajes(): Promise<Mensaje[]> {
+  obtenerMensajes(): Observable<Mensaje[]> {
     const mensajesCollection = collection(this.firestore, 'chat');
-    const querySnapshot = await getDocs(mensajesCollection);
-    const mensajes: Mensaje[] = [];
+    const mensajesQuery = query(mensajesCollection, orderBy('fechaHora')); // Ordenar por fechaHora
 
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      mensajes.push({
-        usuario: {
-          uid: data['usuario'].uid, // Acceso con notación de corchetes
-          nombre: data['usuario'].nombre, // Acceso con notación de corchetes
-          email: data['usuario'].email, // Acceso con notación de corchetes
-        },
-        texto: data['texto'], // Acceso con notación de corchetes
-        fechaHora: new Date(data['fechaHora']), // Acceso con notación de corchetes
-      });
-    });
-    // Ordenar mensajes del más viejo al más nuevo
-    mensajes.sort((a, b) => a.fechaHora.getTime() - b.fechaHora.getTime());
-
-    return mensajes;
+    return collectionData(mensajesQuery, { idField: 'id' }) as Observable<
+      Mensaje[]
+    >;
   }
 
   //#endregion
