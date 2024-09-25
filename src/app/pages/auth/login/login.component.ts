@@ -14,6 +14,8 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { DatabaseService } from '../../../services/database.service';
+import { Usuario } from '../../../classes/usuario';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   authSubscription?: Unsubscribe;
 
   private auth = inject(Auth);
+  private db = inject(DatabaseService);
   private router = inject(Router);
   private fb = inject(FormBuilder);
 
@@ -50,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       const { email, password } = this.form.value;
       signInWithEmailAndPassword(this.auth, email, password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
           console.log('Usuario autenticado:', userCredential.user);
         })
         .catch((error) => {
@@ -61,6 +64,20 @@ export class LoginComponent implements OnInit, OnDestroy {
             confirmButtonText: 'Aceptar',
           });
         });
+      this.authSubscription = this.auth.onAuthStateChanged(async (auth) => {
+        if (auth?.email) {
+          try {
+            const usuario = await this.db.obtenerUsuarioPorUid(auth.uid);
+            if (usuario) {
+              this.db.logInUsuario(usuario);
+            } else {
+              console.error('Error al obtener el  usuario:');
+            }
+          } catch (error) {
+            console.error('Error al obtener el  usuario:', error);
+          }
+        }
+      });
     } else {
       console.error('Formulario inválido');
     }

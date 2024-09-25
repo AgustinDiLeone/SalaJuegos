@@ -1,0 +1,157 @@
+h1 {
+  color: #4caf50;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  animation: bounceIn 1s ease-out;
+}
+
+.chat-container h1 {
+  background-color: #4caf50; /* Fondo del título */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  display: inline-block; /* Ajustar el ancho del contenedor al contenido */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  animation: fadeInDown 1s ease-in-out;
+
+  color: white; /* Color del texto */
+  margin: 0; /* Quitar margen del título */
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.home-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f3f3f3;
+  min-height: 100vh;
+  animation: fadeInScale 1s ease-out;
+}
+
+.chat-container {
+  display: flex;
+  justify-content: center; /* Centra el contenedor de chat */
+  gap: 20px; /* Espacio entre los contenedores */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 1000px; /* Ajusta el ancho máximo según sea necesario */
+  margin: 0 auto;
+  margin-top: 5%;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Arial", sans-serif;
+  box-sizing: border-box;
+}
+.messages {
+  width: 100%; /* El contenedor de mensajes ocupa todo el ancho */
+  max-height: 300px; /* Altura máxima para el área de mensajes */
+  overflow-y: auto; /* Permitir desplazamiento vertical */
+  border: 1px solid #ced4da; /* Borde de mensajes */
+  border-radius: 8px; /* Bordes más redondeados */
+  padding: 10px;
+}
+
+.mi-mensaje {
+  transition: background-color 0.3s;
+  box-sizing: border-box; /* Asegura que el padding y el margen no afecten el ancho total */
+  background-color: #4caf50; /* Color de fondo para los mensajes del usuario */
+  text-align: right; /* Alineación a la izquierda */
+  margin-left: auto; /* Desplazar a la derecha */
+  margin-right: 0; /* Sin margen a la derecha */
+  color: white;
+  display: flex; /* Usar flexbox para adaptar el tamaño */
+  max-width: 60%; /* Ancho máximo del 60% */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 8px; /* Espaciado interno */
+  word-wrap: break-word; /* Permitir que las palabras largas se dividan */
+  margin-top: 2%;
+}
+
+.otros-mensaje {
+  background-color: #ffffff; /* Color de fondo para los mensajes de otros */
+  text-align: left; /* Alineación a la izquierda */
+  margin-right: auto; /* Desplazar a la izquierda */
+  margin-left: 0; /* Sin margen a la izquierda */
+}
+.usuario {
+  font-weight: bold; /* Nombre del usuario en negrita */
+  margin-right: 5px; /* Espacio entre el nombre y el texto */
+}
+
+.texto {
+  word-wrap: break-word; /* Permitir que las palabras se dividan si son muy largas */
+}
+
+.message:hover {
+  background-color: #d3d3d3; /* Color al pasar el mouse */
+}
+
+.input-group {
+  display: flex;
+  margin-top: 10px; /* Espacio arriba del input */
+}
+
+input[type="text"] {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  padding: 10px;
+  border: 1px solid #ced4da; /* Borde del input */
+  border-radius: 4px;
+  margin-right: 10px; /* Espacio a la derecha */
+  transition: border-color 0.3s; /* Transición para el borde */
+}
+
+input[type="text"]:focus {
+  border-color: #4caf50; /* Color del borde al enfocar */
+  outline: none; /* Sin contorno al enfocar */
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #45a049; /* Color del botón */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Transición para el color y el movimiento */
+}
+
+button:hover {
+  background-color: #388e3c; /* Color del botón al pasar el mouse */
+  transform: scale(1.05); /* Escala al pasar el mouse */
+}
+
+/* Animación de carga */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

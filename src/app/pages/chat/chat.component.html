@@ -1,0 +1,35 @@
+<div class="home-container">
+  <h1 *ngIf="!logueado">Bienvenido a Sala de Chats</h1>
+
+  <!-- Mensaje si el usuario no está logueado -->
+  <div *ngIf="!logueado" class="mensaje-login">
+    <p>Por favor, inicie sesión para acceder a los chats.</p>
+  </div>
+
+  <div *ngIf="logueado" class="chat-container">
+    <h1>Sala de Chats</h1>
+    <div class="messages">
+      <div
+        *ngFor="let msg of mensajes"
+        [ngClass]="{
+          'mi-mensaje': msg.usuario.uid === usuario.uid,
+          'otros-mensaje': msg.usuario.uid !== usuario.uid
+        }"
+      >
+        <strong *ngIf="msg.usuario.uid !== usuario.uid"
+          >{{ msg.usuario.nombre }}:</strong
+        >
+        <p>{{ msg.texto }}</p>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input
+        type="text"
+        [(ngModel)]="mensaje"
+        placeholder="Escribe tu mensaje..."
+      />
+      <button (click)="enviar()">Enviar</button>
+    </div>
+  </div>
+</div>

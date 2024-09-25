@@ -42,10 +42,9 @@ export class AppComponent {
     email: string
   ): Promise<void> {
     try {
-      const nombre = await this.db.obtenerNombrePorUid(uid);
-      console.log(nombre);
-      if (nombre) {
-        this.titulo += ' - ' + nombre;
+      const usuario = await this.db.obtenerUsuarioPorUid(uid);
+      if (usuario) {
+        this.titulo += ' - ' + usuario.nombre;
       } else {
         this.agregarEmailAlTitulo(email);
       }
@@ -87,6 +86,6 @@ export class AppComponent {
     this.auth.signOut();
     this.logueado = false;
     this.titulo = 'Sala de juego';
-    this.router.navigateByUrl('');
+    window.location.reload();
   }
 }

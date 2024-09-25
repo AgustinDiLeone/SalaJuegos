@@ -10,6 +10,7 @@ import {
   addDoc,
   deleteDoc,
   getDoc,
+  getDocs,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -21,20 +22,26 @@ export class DatabaseService {
 
   constructor(private firestore: Firestore) {}
 
+  //#region Usuarios
+
   agregarUsuario(user: Usuario) {
     const colUsuarios = collection(this.firestore, 'usuarios');
     const usuarioDoc = doc(colUsuarios, user.uid); // Aquí especificas el ID que deseas usar (user.uid en este caso)
 
     return setDoc(usuarioDoc, { ...user });
   }
-  async obtenerNombrePorUid(uid: string): Promise<string | null> {
+  async obtenerUsuarioPorUid(uid: string): Promise<Usuario | null> {
     try {
       const usuarioDocRef = doc(this.firestore, 'usuarios', uid);
       const usuarioDoc = await getDoc(usuarioDocRef);
 
       if (usuarioDoc.exists()) {
-        const usuarioData = usuarioDoc.data();
-        return usuarioData ? usuarioData['nombre'] : null; // Accedemos a 'name' usando la notación de corchetes
+        const usuarioData = usuarioDoc.data(); // Aseguramos que se interprete como tipo Usuario
+        return new Usuario(
+          usuarioData['uid'],
+          usuarioData['nombre'],
+          usuarioData['email']
+        );
       } else {
         console.error('No existe un usuario con ese UID');
         return null;
@@ -44,6 +51,90 @@ export class DatabaseService {
       return null;
     }
   }
+
+  logInUsuario(user: Usuario) {
+    const colUsuarios = collection(this.firestore, 'login');
+
+    // Crea un nuevo documento con un ID aleatorio
+    const usuarioDoc = doc(colUsuarios); // Firestore generará un ID único automáticamente
+
+    // Formatear la fecha y hora actuales
+    const fechaHoraFormateada = this.formatFechaHora(new Date());
+
+    // Agrega la fecha y hora al objeto que se va a guardar
+    const usuarioConFecha = {
+      ...user,
+      fechaHora: fechaHoraFormateada, // Guarda la fecha y hora en el formato deseado
+    };
+
+    return setDoc(usuarioDoc, usuarioConFecha);
+  }
+
+  //#endregion
+
+  //#region FormatoFecha
+  formatFechaHora(date: Date): string {
+    const dia = String(date.getDate()).padStart(2, '0'); // Día
+    const mes = String(date.getMonth() + 1).padStart(2, '0'); // Mes (los meses empiezan en 0)
+    const anio = String(date.getFullYear()).slice(-2); // Obtener los últimos 2 dígitos del año
+    const horas = String(date.getHours()).padStart(2, '0'); // Horas
+    const minutos = String(date.getMinutes()).padStart(2, '0'); // Minutos
+
+    return `${dia}/${mes}/${anio} ${horas}:${minutos}`;
+  }
+  //#endregion
+
+  //#region Chats
+
+  async enviarMensaje(usuario: Usuario, mensaje: string) {
+    const colChat = collection(this.firestore, 'chat');
+
+    // Formatear la fecha y hora actuales
+    const fechaHoraFormateada = this.formatFechaHora(new Date());
+
+    // Crear el objeto que se enviará a Firestore
+    const mensajeChat = {
+      usuario: {
+        uid: usuario.uid,
+        nombre: usuario.nombre,
+        email: usuario.email,
+      },
+      texto: mensaje, // Mensaje del usuario
+      fechaHora: fechaHoraFormateada, // Fecha y hora formateadas
+    };
+
+    try {
+      // Enviar el mensaje a Firestore
+      await addDoc(colChat, mensajeChat);
+      console.log('Mensaje enviado correctamente:', mensajeChat);
+    } catch (error) {
+      console.error('Error al enviar el mensaje:', error);
+    }
+  }
+  // Método para obtener mensajes
+  async obtenerMensajes() {
+    const mensajesCollection = collection(this.firestore, 'chat');
+    const querySnapshot = await getDocs(mensajesCollection);
+    const mensajes: { usuario: Usuario; texto: string; fechaHora: string }[] =
+      [];
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      mensajes.push({
+        usuario: {
+          uid: data['usuario'].uid, // Acceso con notación de corchetes
+          nombre: data['usuario'].nombre, // Acceso con notación de corchetes
+          email: data['usuario'].email, // Acceso con notación de corchetes
+        },
+        texto: data['texto'], // Acceso con notación de corchetes
+        fechaHora: data['fechaHora'], // Acceso con notación de corchetes
+      });
+    });
+
+    return mensajes;
+  }
+
+  //#endregion
 
   traerUsuarios(): Observable<Usuario[]> {
     const colUsuarios = collection(this.firestore, 'usuarios');
