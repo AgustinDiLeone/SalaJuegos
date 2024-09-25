@@ -71,7 +71,7 @@
   color: white; /* Color del texto */
   text-align: right; /* Alineación a la derecha */
   margin-left: auto; /* Desplazar a la derecha */
-  padding: 2px;
+  padding: 2%;
 }
 
 .otros-mensaje {
