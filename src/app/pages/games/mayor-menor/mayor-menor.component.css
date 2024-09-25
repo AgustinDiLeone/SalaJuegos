@@ -9,11 +9,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 1000px; /* Ajusta el ancho máximo según sea necesario */
   margin: 0 auto;
-  margin-top: 5%;
+  margin-top: 3%;
   flex-direction: column;
   align-items: center;
   font-family: "Arial", sans-serif;
   box-sizing: border-box;
+  border: 1px solid #4caf50; /* Borde */
 }
 
 /* Estilo del título */

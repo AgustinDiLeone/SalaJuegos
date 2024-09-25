@@ -18,7 +18,7 @@ body {
   max-width: 400px; /* Limita el ancho máximo */
   animation: fadeIn 1s ease-in-out;
   margin-left: 35%;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 h1 {

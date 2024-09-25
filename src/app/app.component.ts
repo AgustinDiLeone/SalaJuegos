@@ -32,7 +32,7 @@ export class AppComponent {
         // Intentamos agregar el nombre al título
         await this.agregarNombreAlTitulo(auth.uid, auth.email);
 
-        this.router.navigateByUrl('');
+        //this.router.navigateByUrl('');
       }
     });
   }

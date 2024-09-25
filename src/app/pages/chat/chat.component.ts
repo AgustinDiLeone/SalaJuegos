@@ -5,6 +5,7 @@ import { databaseInstance$ } from '@angular/fire/database';
 import { DatabaseService } from '../../services/database.service';
 import { Usuario } from '../../classes/usuario';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Mensaje } from '../../classes/mensajes';
 
 @Component({
   selector: 'app-chat',
@@ -20,7 +21,7 @@ export class ChatComponent {
   usuario: Usuario | any;
   logueado = false;
   authSubscription?: Unsubscribe;
-  mensajes: { usuario: Usuario; texto: string }[] = []; // Lista de mensajes
+  mensajes: Mensaje[] = []; // Lista de mensajes
   mensaje: string = ''; // Mensaje actual que se va a enviar
 
   ngOnInit(): void {
@@ -54,9 +55,18 @@ export class ChatComponent {
     if (this.mensaje.trim() === '' || !this.usuario) return; // Evitar enviar mensajes vacíos o sin usuario
 
     try {
-      await this.db.enviarMensaje(this.usuario, this.mensaje); // Llama al método para enviar el mensaje
+      const mensaje: Mensaje = {
+        usuario: this.usuario,
+        texto: this.mensaje,
+        fechaHora: new Date(),
+      };
+      await this.db.enviarMensaje(mensaje); // Llama al método para enviar el mensaje
       console.log('Mensaje enviado correctamente:', this.mensaje);
-      this.mensajes.push({ usuario: this.usuario, texto: this.mensaje }); // Agrega el mensaje a la lista
+      this.mensajes.push({
+        usuario: this.usuario,
+        texto: this.mensaje,
+        fechaHora: new Date(),
+      }); // Agrega el mensaje a la lista
       this.mensaje = ''; // Limpiar el campo de entrada
     } catch (error) {
       console.error('Error al enviar el mensaje:', error);

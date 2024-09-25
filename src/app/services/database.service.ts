@@ -13,6 +13,7 @@ import {
   getDocs,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Mensaje } from '../classes/mensajes';
 
 @Injectable({
   providedIn: 'root',
@@ -86,21 +87,18 @@ export class DatabaseService {
 
   //#region Chats
 
-  async enviarMensaje(usuario: Usuario, mensaje: string) {
+  async enviarMensaje(mensaje: Mensaje) {
     const colChat = collection(this.firestore, 'chat');
-
-    // Formatear la fecha y hora actuales
-    const fechaHoraFormateada = this.formatFechaHora(new Date());
 
     // Crear el objeto que se enviará a Firestore
     const mensajeChat = {
       usuario: {
-        uid: usuario.uid,
-        nombre: usuario.nombre,
-        email: usuario.email,
+        uid: mensaje.usuario.uid,
+        nombre: mensaje.usuario.nombre,
+        email: mensaje.usuario.email,
       },
-      texto: mensaje, // Mensaje del usuario
-      fechaHora: fechaHoraFormateada, // Fecha y hora formateadas
+      texto: mensaje.texto, // Mensaje del usuario
+      fechaHora: String(mensaje.fechaHora), // Fecha y hora formateadas
     };
 
     try {
@@ -112,11 +110,10 @@ export class DatabaseService {
     }
   }
   // Método para obtener mensajes
-  async obtenerMensajes() {
+  async obtenerMensajes(): Promise<Mensaje[]> {
     const mensajesCollection = collection(this.firestore, 'chat');
     const querySnapshot = await getDocs(mensajesCollection);
-    const mensajes: { usuario: Usuario; texto: string; fechaHora: string }[] =
-      [];
+    const mensajes: Mensaje[] = [];
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
@@ -127,9 +124,11 @@ export class DatabaseService {
           email: data['usuario'].email, // Acceso con notación de corchetes
         },
         texto: data['texto'], // Acceso con notación de corchetes
-        fechaHora: data['fechaHora'], // Acceso con notación de corchetes
+        fechaHora: new Date(data['fechaHora']), // Acceso con notación de corchetes
       });
     });
+    // Ordenar mensajes del más viejo al más nuevo
+    mensajes.sort((a, b) => a.fechaHora.getTime() - b.fechaHora.getTime());
 
     return mensajes;
   }
