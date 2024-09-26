@@ -1,1 +1,31 @@
-<p>preguntados works!</p>
+<div *ngIf="preguntaActual">
+  <div *ngIf="preguntaActual.questionWithImage === 'yes'">
+    <img
+      *ngIf="preguntaActual.images.length > 0"
+      [src]="preguntaActual.images[0]"
+      alt="Pregunta"
+      class="img-fluid"
+    />
+  </div>
+
+  <div class="pregunta">
+    <h3>{{ preguntaActual.question }}</h3>
+  </div>
+
+  <div class="opciones">
+    <button
+      *ngFor="let option of preguntaActual.options"
+      [ngClass]="{
+        correct: respuestaSeleccionada && esCorrecta(option),
+        incorrect:
+          respuestaSeleccionada &&
+          !esCorrecta(option) &&
+          respuestaSeleccionada === option,
+        default: !respuestaSeleccionada
+      }"
+      (click)="seleccionarOpcion(option)"
+    >
+      {{ option }}
+    </button>
+  </div>
+</div>

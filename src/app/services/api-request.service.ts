@@ -9,18 +9,18 @@ export class ApiRequestService {
   dato: any = {};
   constructor() {}
 
-  apiUrl = 'https://api.github.com/users/';
-  traerUsuario(usuario: string) {
+  apiUrl =
+    'https://opentdb.com/api.php?amount=50&type=multiple&difficulty!=hard';
+
+  traerUsuario(): any {
     //
-    const peticion = this.http.get(this.apiUrl + usuario, {
+    const peticion = this.http.get(this.apiUrl, {
       responseType: 'json',
-      params: {
-        ejemplo: 'labo4',
-      },
     });
     peticion.subscribe((respuesta) => {
       console.log(respuesta);
       this.dato = respuesta;
+      return this.dato;
     });
   }
 }

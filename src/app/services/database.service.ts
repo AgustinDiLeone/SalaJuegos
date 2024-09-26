@@ -17,6 +17,7 @@ import {
 } from '@angular/fire/firestore';
 import { map, Observable } from 'rxjs';
 import { Mensaje } from '../classes/mensajes';
+import { Timestamp } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -90,6 +91,7 @@ export class DatabaseService {
 
   //#region Chats
 
+  // Método para enviar un mensaje
   async enviarMensaje(mensaje: Mensaje) {
     const colChat = collection(this.firestore, 'chat');
 
@@ -101,7 +103,7 @@ export class DatabaseService {
         email: mensaje.usuario.email,
       },
       texto: mensaje.texto, // Mensaje del usuario
-      fechaHora: String(mensaje.fechaHora), // Fecha y hora formateadas
+      fechaHora: Timestamp.fromDate(mensaje.fechaHora), // Convertir Date a Timestamp
     };
 
     try {
@@ -112,17 +114,20 @@ export class DatabaseService {
       console.error('Error al enviar el mensaje:', error);
     }
   }
+
   // Método para obtener mensajes
   obtenerMensajes(): Observable<Mensaje[]> {
     const mensajesCollection = collection(this.firestore, 'chat');
     const mensajesQuery = query(mensajesCollection, orderBy('fechaHora')); // Ordenar por fechaHora
 
     return collectionData(mensajesQuery, { idField: 'id' }).pipe(
-      map((mensajes: Mensaje[]) => {
-        // Parsear fechaHora a Date
-        return mensajes.map((msg: any) => ({
+      map((mensajes: any[]) => {
+        return mensajes.map((msg) => ({
           ...msg,
-          fechaHora: new Date(msg.fechaHora), // Asegúrate de que fechaHora sea un Date
+          fechaHora:
+            msg.fechaHora instanceof Timestamp
+              ? msg.fechaHora.toDate() // Convertir Timestamp a Date
+              : new Date(msg.fechaHora), // Si no es un Timestamp, intentar convertir
         }));
       })
     );

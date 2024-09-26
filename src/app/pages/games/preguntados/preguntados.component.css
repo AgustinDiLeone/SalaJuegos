@@ -1,0 +1,29 @@
+.pregunta {
+  margin: 20px 0;
+}
+
+.opciones button {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.opciones button.correct {
+  background-color: green;
+  color: white;
+}
+
+.opciones button.incorrect {
+  background-color: red;
+  color: white;
+}
+
+.opciones button.default {
+  background-color: lightgray;
+  color: black;
+}

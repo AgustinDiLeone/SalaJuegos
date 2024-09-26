@@ -6,6 +6,7 @@ import { DatabaseService } from '../../services/database.service';
 import { Usuario } from '../../classes/usuario';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Mensaje } from '../../classes/mensajes';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-chat',
@@ -32,10 +33,8 @@ export class ChatComponent {
         this.logueado = true;
         this.cargarMensajes(); // Cargar mensajes al iniciar sesión
         this.cargarUsuario(auth.uid); // Carga el usuario autenticado
-        this.scrollToBottom();
       }
     });
-    this.scrollToBottom();
   }
   async cargarUsuario(uid: string) {
     // Cargar información del usuario autenticado
@@ -53,7 +52,6 @@ export class ChatComponent {
     // Cargar mensajes en tiempo real
     this.db.obtenerMensajes().subscribe((mensajes) => {
       this.mensajes = mensajes; // Actualiza la lista de mensajes
-      setTimeout(() => this.scrollToBottom(), 0);
     });
   }
 
@@ -65,13 +63,12 @@ export class ChatComponent {
       const mensaje: Mensaje = {
         usuario: this.usuario,
         texto: this.mensaje,
-        fechaHora: new Date(),
+        fechaHora: new Date(), // Cambiado a Timestamp
       };
       await this.db.enviarMensaje(mensaje); // Llama al método para enviar el mensaje
       console.log('Mensaje enviado correctamente:', this.mensaje);
       this.mensajes.push(mensaje); // Agrega el mensaje a la lista
       this.mensaje = ''; // Limpiar el campo de entrada
-      this.scrollToBottom();
     } catch (error) {
       console.error('Error al enviar el mensaje:', error);
     }
@@ -81,15 +78,6 @@ export class ChatComponent {
     // Desuscribirse para evitar fugas de memoria
     if (this.authSubscription) {
       this.authSubscription();
-    }
-  }
-
-  private scrollToBottom(): void {
-    try {
-      this.messagesContainer.nativeElement.scrollTop =
-        this.messagesContainer.nativeElement.scrollHeight;
-    } catch (err) {
-      console.error('Error al desplazarse hacia abajo:', err);
     }
   }
 }
