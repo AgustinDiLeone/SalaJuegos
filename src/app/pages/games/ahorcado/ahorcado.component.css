@@ -122,31 +122,9 @@
 
 /* Contenedor del estado */
 .status {
-  margin-top: 20px;
-}
-
-/* Botón de jugar de nuevo */
-.reset-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.reset-button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-}
-
-.reset-button:disabled {
-  background-color: #b0b0b0;
-  cursor: not-allowed;
+  font-size: 1.5rem;
+  color: #28a745; /* Color verde para los aciertos */
+  margin-bottom: 10px;
 }
 
 /* Contenedor de la imagen del ahorcado */

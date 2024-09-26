@@ -1,10 +1,75 @@
-.pregunta {
-  margin: 20px 0;
+.main-container {
+  display: flex;
+  justify-content: space-between; /* Espacio igual entre contenedores */
+  align-items: flex-start; /* Alinea los elementos al principio verticalmente */
+  gap: 20px; /* Espacio entre los contenedores */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 800px; /* Ajusta el ancho máximo según sea necesario */
+  margin: 0 auto;
+  margin-top: 3%;
+  border: 1px solid #4caf50; /* Borde */
 }
 
-.opciones button {
+/* Contenedor del juego */
+.game-container {
+  flex: 1; /* Toma el espacio restante disponible */
+  text-align: center;
+}
+
+/* Contenedor del título */
+.title-container {
+  background-color: #4caf50; /* Fondo del título */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  display: inline-block; /* Ajustar el ancho del contenedor al contenido */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.title-container h1 {
+  color: white; /* Color del texto */
+  margin: 0; /* Quitar margen del título */
+}
+.imagen-ajustada {
+  width: 500px; /* Ajusta el ancho según lo que necesites */
+  height: 200px; /* Ajusta la altura según lo que necesites */
+  object-fit: cover; /* Recorta la imagen para que se ajuste al contenedor */
+  display: block; /* Asegura que se comporte como un bloque */
+  margin: 0 auto; /* Centra la imagen */
+}
+
+/* Estilo para la pregunta */
+.pregunta {
   display: inline-block;
-  margin: 10px;
+  margin: auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  max-width: 600px; /* Ajusta el ancho máximo según sea necesario */
+}
+.opciones {
+  display: flex; /* Usar flexbox para el contenedor */
+  flex-direction: column; /* Apilar elementos en una columna */
+  align-items: center; /* Centrar los botones horizontalmente */
+  margin-bottom: 5px;
+}
+
+/* Estilo para las opciones */
+.opciones button {
+  width: 100%; /* Hacer que los botones ocupen todo el ancho */
+  max-width: 500px;
+  display: center;
+  margin: 5px;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -26,4 +91,10 @@
 .opciones button.default {
   background-color: lightgray;
   color: black;
+}
+
+/* Estilo para el estado */
+.status {
+  font-size: 1.5rem;
+  color: #28a745; /* Color verde para los aciertos */
 }
