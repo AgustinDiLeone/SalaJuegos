@@ -52,6 +52,7 @@ export class ChatComponent {
     // Cargar mensajes en tiempo real
     this.db.obtenerMensajes().subscribe((mensajes) => {
       this.mensajes = mensajes; // Actualiza la lista de mensajes
+      this.scrollToBottom();
     });
   }
 
@@ -69,6 +70,7 @@ export class ChatComponent {
       console.log('Mensaje enviado correctamente:', this.mensaje);
       this.mensajes.push(mensaje); // Agrega el mensaje a la lista
       this.mensaje = ''; // Limpiar el campo de entrada
+      this.scrollToBottom();
     } catch (error) {
       console.error('Error al enviar el mensaje:', error);
     }
@@ -79,5 +81,11 @@ export class ChatComponent {
     if (this.authSubscription) {
       this.authSubscription();
     }
+  }
+  scrollToBottom() {
+    setTimeout(() => {
+      this.messagesContainer.nativeElement.scrollTop =
+        this.messagesContainer.nativeElement.scrollHeight;
+    }, 0);
   }
 }
