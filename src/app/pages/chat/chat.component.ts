@@ -68,7 +68,7 @@ export class ChatComponent {
       };
       await this.db.enviarMensaje(mensaje); // Llama al método para enviar el mensaje
       console.log('Mensaje enviado correctamente:', this.mensaje);
-      this.mensajes.push(mensaje); // Agrega el mensaje a la lista
+      //this.mensajes.push(mensaje); // Agrega el mensaje a la lista
       this.mensaje = ''; // Limpiar el campo de entrada
       this.scrollToBottom();
     } catch (error) {
