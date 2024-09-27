@@ -1,0 +1,31 @@
+<div class="main-container">
+  <div class="game-container">
+    <div class="title-container">
+      <h1>Buscaminas</h1>
+    </div>
+
+    <div class="tablero">
+      <div
+        *ngFor="let celda of tablero; let i = index"
+        class="celda"
+        [ngClass]="{
+          revelada: celda.revelada,
+          mina: celda.esMina && celda.revelada,
+          marcada: celda.marcada
+        }"
+        (click)="revelarCelda(i)"
+        (contextmenu)="marcarCelda(i, $event)"
+      >
+        <span *ngIf="celda.revelada && !celda.esMina">{{
+          celda.minasAdyacentes > 0 ? celda.minasAdyacentes : ""
+        }}</span>
+        <span *ngIf="celda.marcada">🚩</span>
+      </div>
+    </div>
+
+    <div class="status">
+      <p>Minas restantes: {{ minasRestantes }}</p>
+      <p>Vidas: {{ vidas }}</p>
+    </div>
+  </div>
+</div>

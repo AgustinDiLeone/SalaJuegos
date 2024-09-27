@@ -1,0 +1,103 @@
+.main-container {
+  display: flex;
+  justify-content: center; /* Centra el contenedor principal */
+  align-items: flex-start; /* Alinea los elementos al principio verticalmente */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 800px; /* Ajusta el ancho máximo según sea necesario */
+  margin: 0 auto;
+  margin-top: 3%;
+  border: 1px solid #4caf50; /* Borde */
+}
+
+/* Contenedor del juego */
+.game-container {
+  flex: 1; /* Toma el espacio restante disponible */
+  text-align: center;
+}
+
+/* Contenedor del título */
+.title-container {
+  background-color: #4caf50; /* Fondo del título */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  display: inline-block; /* Ajustar el ancho del contenedor al contenido */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.title-container h1 {
+  color: white; /* Color del texto */
+  margin: 0; /* Quitar margen del título */
+}
+
+/* Estilo del tablero */
+/* Estilo del tablero */
+.tablero {
+  display: grid; /* Usar grid para el tablero */
+  grid-template-columns: repeat(
+    10,
+    40px
+  ); /* Ajusta el número de columnas y el tamaño de cada celda */
+  gap: 5px; /* Espacio entre las celdas */
+  justify-content: center; /* Centra el tablero en el contenedor */
+}
+
+/* Estilo de las celdas */
+.celda {
+  width: 40px;
+  height: 40px;
+  background-color: lightgray; /* Color de fondo por defecto */
+  display: flex; /* Usar flexbox para centrar el contenido */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  font-size: 18px;
+  transition: background-color 0.3s, transform 0.2s; /* Transiciones para efectos */
+}
+
+.celda:hover {
+  background-color: #ddd; /* Color de fondo al pasar el ratón */
+  transform: scale(1.05); /* Escalado al pasar el ratón */
+}
+
+/* Celdas reveladas */
+.celda.revelada {
+  background-color: white; /* Color de fondo al revelar */
+}
+
+/* Celdas con minas */
+.celda.mina {
+  background-color: red; /* Color de fondo para las minas reveladas */
+}
+
+/* Celdas marcadas */
+.celda.marcada {
+  background-color: yellow; /* Color de fondo para las celdas marcadas */
+}
+
+/* Estilo para el estado */
+.status {
+  font-size: 1.5rem;
+  color: #28a745; /* Color verde para los aciertos */
+  margin-bottom: 10px; /* Espacio debajo del estado */
+}
+
+/* Botón de reiniciar */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50; /* Color del botón */
+  color: white; /* Color del texto */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049; /* Color del botón al pasar el ratón */
+}

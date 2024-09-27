@@ -4,6 +4,7 @@ import { RegistroComponent } from './pages/auth/registro/registro.component';
 import { AhorcadoComponent } from './pages/games/ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './pages/games/mayor-menor/mayor-menor.component';
 import { PreguntadosComponent } from './pages/games/preguntados/preguntados.component';
+import { BuscaminasComponent } from './pages/games/buscaminas/buscaminas.component';
 
 export const routes: Routes = [
   {
@@ -53,6 +54,10 @@ export const routes: Routes = [
       {
         path: 'preguntados',
         component: PreguntadosComponent,
+      },
+      {
+        path: 'buscaminas',
+        component: BuscaminasComponent,
       },
     ],
   },
