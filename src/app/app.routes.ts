@@ -1,12 +1,10 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegistroComponent } from './pages/auth/registro/registro.component';
-import { AhorcadoComponent } from './pages/games/ahorcado/ahorcado.component';
-import { MayorMenorComponent } from './pages/games/mayor-menor/mayor-menor.component';
-import { PreguntadosComponent } from './pages/games/preguntados/preguntados.component';
-import { BuscaminasComponent } from './pages/games/buscaminas/buscaminas.component';
 import { canActivate } from '@angular/fire/auth-guard';
 import { authGuard } from './guards/auth.guard';
+import { HomeComponent } from './pages/home/home.component';
+import { Auth } from '@angular/fire/auth';
 
 export const routes: Routes = [
   {
@@ -41,34 +39,41 @@ export const routes: Routes = [
   },
   {
     path: 'games',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
-        component: AhorcadoComponent,
-        canActivate: [authGuard],
+        component: HomeComponent,
       },
       {
         path: 'ahorcado',
-        component: AhorcadoComponent,
-        canActivate: [authGuard],
+        loadComponent: () =>
+          import('./pages/games/ahorcado/ahorcado.component').then(
+            (c) => c.AhorcadoComponent
+          ),
       },
       {
         path: 'mayor-menor',
-        component: MayorMenorComponent,
-        canActivate: [authGuard],
+        loadComponent: () =>
+          import('./pages/games/mayor-menor/mayor-menor.component').then(
+            (c) => c.MayorMenorComponent
+          ),
       },
       {
         path: 'preguntados',
-        component: PreguntadosComponent,
-        canActivate: [authGuard],
+        loadComponent: () =>
+          import('./pages/games/preguntados/preguntados.component').then(
+            (c) => c.PreguntadosComponent
+          ),
       },
       {
         path: 'buscaminas',
-        component: BuscaminasComponent,
-        canActivate: [authGuard],
+        loadComponent: () =>
+          import('./pages/games/buscaminas/buscaminas.component').then(
+            (c) => c.BuscaminasComponent
+          ),
       },
     ],
-    canActivate: [authGuard],
   },
   {
     path: 'quien-soy',
@@ -83,5 +88,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/chat/chat.component').then((c) => c.ChatComponent),
     canActivate: [authGuard],
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
 ];
