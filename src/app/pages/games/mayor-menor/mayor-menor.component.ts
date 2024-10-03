@@ -130,7 +130,7 @@ export class MayorMenorComponent implements OnInit {
     });
   }
   goHome() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('home');
   }
 
   reiniciarJuego(): void {

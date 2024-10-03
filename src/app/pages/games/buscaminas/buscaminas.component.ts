@@ -190,6 +190,6 @@ export class BuscaminasComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('home');
   }
 }

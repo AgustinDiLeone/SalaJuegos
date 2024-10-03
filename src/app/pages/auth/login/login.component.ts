@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     // Suscripción al estado de autenticación
     this.authSubscription = this.auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('home');
       }
     });
   }

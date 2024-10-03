@@ -147,6 +147,6 @@ export class AhorcadoComponent {
   }
 
   goHome() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('home');
   }
 }

@@ -68,7 +68,7 @@ export class AppComponent {
   }
 
   irAlHome() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('home');
   }
   irAlChat() {
     this.router.navigateByUrl('chat');

@@ -140,7 +140,7 @@ export class PreguntadosComponent {
   }
 
   goHome() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('home');
   }
   // Reiniciar el juego
   resetearJuego() {

@@ -1,10 +1,11 @@
 <div class="toolbar">
   <div class="title">{{ titulo }}</div>
   <div class="button-group">
+    @if(logueado){
     <button class="toolbar-button" (click)="irAlHome()">HOME</button>
     <button class="toolbar-button" (click)="irAlChat()">CHAT</button>
     <button class="toolbar-button" (click)="irAlQuienSoy()">Quién Soy</button>
-    @if(!logueado){
+    } @if(!logueado){
     <button class="toolbar-button" (click)="irAlLogin()">Log In</button>
     <button class="toolbar-button" (click)="irAlRegistro()">Registro</button>
     }@else{
